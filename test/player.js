@@ -17,11 +17,9 @@ $(document).ready(function() {
     // 加载LRC歌词文件
     function loadLrcFile(url, callback) {
         $.get(url, function(lrcText) {
-            console.log("LRC文件加载成功", lrcText); // 调试信息
             callback(parseLrc(lrcText));
         }).fail(function() {
             console.error('Failed to load LRC file.');
-            lyricsContainer.text('歌词加载失败。'); // 如果文件加载失败
         });
     }
 
@@ -41,7 +39,6 @@ $(document).ready(function() {
                 });
             }
         });
-        console.log("解析的歌词：", parsedLyrics); // 调试信息
         return parsedLyrics;
     }
 
@@ -56,11 +53,8 @@ $(document).ready(function() {
     }
 
     // 加载LRC歌词文件
-    loadLrcFile('src/test.lrc', function(parsedLyrics) {
+    loadLrcFile('src/孤独患者-陈奕迅.lrc', function(parsedLyrics) {
         lyrics = parsedLyrics;
-        if (lyrics.length === 0) {
-            lyricsContainer.text('未找到歌词');
-        }
     });
 
     // Form validation
