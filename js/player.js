@@ -92,11 +92,12 @@ $(document).ready(function() {
     playBtn.on('click', function() {
         if (audio.paused) {
             audio.play();
-            playBtn.html('<i class="bi bi-pause-fill"></i>');
+            
+            playBtn.html('<img src="img/player/pause-fill.svg" width="25" height="25" />');
             vinylRecord.addClass('playing');
         } else {
             audio.pause();
-            playBtn.html('<i class="bi bi-play-fill"></i>');
+            playBtn.html('<img src="img/player/play-fill.svg" width="25" height="25" />');
             vinylRecord.removeClass('playing');
         }
     });
@@ -135,10 +136,10 @@ $(document).ready(function() {
     volumeBtn.on('click', function() {
         if (isMuted) {
             audio.volume = 1;
-            volumeBtn.html('<i class="bi bi-volume-up-fill"></i>');
+            volumeBtn.html('<img src="img/player/volume-up-fill.svg" width="25" height="25" />');
         } else {
             audio.volume = 0;
-            volumeBtn.html('<i class="bi bi-volume-mute-fill"></i>');
+            volumeBtn.html('<img src="img/player/volume-mute-fill.svg" width="25" height="25" />');
         }
         isMuted = !isMuted;
     });
