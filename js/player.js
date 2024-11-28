@@ -50,8 +50,21 @@ $(document).ready(function() {
         while (currentLyricIndex < lyrics.length && currentTime >= lyrics[currentLyricIndex].time) {
             currentLyricIndex++;
         }
-        if (currentLyricIndex > 0) {
-            lyricsContainer.html(lyrics[currentLyricIndex - 1].text.replace(/<br>/g, '\n')); // 更新歌词
+
+        // 确保歌词容器只显示当前歌词及前面的几行
+        let lyricsHtml = '';
+        for (let i = Math.max(currentLyricIndex - 5, 0); i < currentLyricIndex + 5 && i < lyrics.length; i++) {
+            const isCurrentLyric = (i === currentLyricIndex - 1); // 当前播放的歌词行
+            const className = isCurrentLyric ? 'current-lyric' : ''; // 高亮当前歌词行
+            lyricsHtml += `<div class="${className}">${lyrics[i].text}</div>`;
+        }
+
+        lyricsContainer.html(lyricsHtml);
+
+        // 自动滚动到当前歌词
+        const currentLyricElem = $('.current-lyric');
+        if (currentLyricElem.length > 0) {
+            lyricsContainer.scrollTop(currentLyricElem[0].offsetTop - lyricsContainer[0].offsetTop - lyricsContainer.height() / 2);
         }
     }
 
