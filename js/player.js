@@ -9,19 +9,19 @@ $(document).ready(function() {
     const currentTimeSpan = $('#currentTime');
     const durationSpan = $('#duration');
     const vinylRecord = $('#vinylRecord').parent();
-    const lyricsContainer = $('#lyrics'); // 歌词显示区域
+    const lyricsContainer = $('#lyrics'); // lyrics area
 
     let lyrics = [];
     let currentLyricIndex = 0;
 
-    // 加载LRC歌词文件
+    // Load LRC file for lyrics
     function loadLrcFile(url, callback) {
         $.get(url, function(lrcText) {
-            console.log("LRC文件加载成功", lrcText); // 调试信息
+            console.log("LRC loaded", lrcText); 
             callback(parseLrc(lrcText));
         }).fail(function() {
             console.error('Failed to load LRC file.');
-            lyricsContainer.text('歌词加载失败。'); // 如果文件加载失败
+            lyricsContainer.text('Failed to load lyrics.'); 
         });
     }
 
